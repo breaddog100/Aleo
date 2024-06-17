@@ -70,13 +70,13 @@ function view_logs(){
 
 # 卸载节点
 function uninstall_node(){
-    echo "你确定要卸载nubit节点程序吗？这将会删除所有相关的数据。[Y/N]"
+    echo "你确定要卸载Aleo节点程序吗？这将会删除所有相关的数据。[Y/N]"
     read -r -p "请确认: " response
     case "$response" in
         [yY][eE][sS]|[yY]) 
             echo "开始卸载节点程序..."
             screen -ls | grep 'aleo_' | cut -d. -f1 | awk '{print $1}' | xargs -I {} screen -X -S {} quit
-			rm -rf .cargo 
+			rm -rf .cargo snarkOS
             echo "节点程序卸载完成。"
             ;;
         *)
