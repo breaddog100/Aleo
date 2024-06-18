@@ -97,18 +97,20 @@ function main_menu() {
 		echo "官方推荐：32C32G128G；推荐配置：4C4G100G"
 	    echo "请选择要执行的操作:"
 	    echo "1. 部署节点 install_node"
-	    echo "2. 创建账号 create_account"
-	    echo "3. 启动证明者节点 start_prover"
-	    echo "4. 查看日志 view_logs"
+	    echo "2. 启动客户端 start_client"
+	    echo "3. 创建账号 create_account"
+	    echo "4. 启动证明者节点 start_prover"
+	    echo "5. 查看日志 view_logs"
 	    echo "1618. 卸载节点 uninstall_node"
 	    echo "0. 退出脚本 exit"
 	    read -p "请输入选项: " OPTION
 	
 	    case $OPTION in
 	    1) install_node ;;
-	    2) create_account ;;
-	    3) start_prover ;;
-	    4) view_logs ;;
+	    2) start_client ;;
+	    3) create_account ;;
+	    4) start_prover ;;
+	    5) view_logs ;;
 	    1618) uninstall_node ;;
 	    0) echo "退出脚本。"; exit 0 ;;
 	    *) echo "无效选项，请重新输入。"; sleep 3 ;;
