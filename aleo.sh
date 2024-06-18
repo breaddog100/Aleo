@@ -2,8 +2,6 @@
 
 # 节点安装功能
 function install_node() {
-
-	read -p "请输入客户端名称:" client_name
 	sudo apt update && sudo apt upgrade
 	sudo apt install -y npm snap screen
 	# 安装 Rust v1.66+
@@ -15,14 +13,18 @@ function install_node() {
 	cd $HOME/snarkOS
 	./build_ubuntu.sh
 	cargo install --locked --path .
-	
-	# 运行客户端
-	screen -dmS aleo_$client_name bash -c "./run-client.sh"
 	export PATH=$HOME/.cargo/bin/:$PATH
 	echo 'export PATH=$HOME/.cargo/bin/:$PATH' >> $HOME/.bashrc
 	source $HOME/.bashrc
 	echo "部署完成..."
 	
+}
+
+# 启动客户端
+function start_client(){
+    read -p "请输入客户端名称:" client_name
+	screen -dmS aleo_$client_name bash -c "cd $HOME/snarkOS; ./run-client.sh"
+    echo "客户端已启动..."
 }
 
 # 生成 Aleo 帐户地址
@@ -32,6 +34,7 @@ function create_account(){
 	$HOME/.cargo/bin/snarkos account new
 }
 
+# 启动证明者
 function start_prover(){
     read -p "请输入证明者名称:" prover_name
     read -p "请输入秘钥:" input_string
