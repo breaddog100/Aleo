@@ -18,8 +18,8 @@ function install_node() {
 	
 	# 运行客户端
 	screen -dmS aleo_$client_name bash -c "./run-client.sh"
-	export PATH=$HOME/.cargo/bin/snarkos:$PATH
-	echo 'export PATH=$HOME/.cargo/bin/snarkos:$PATH' >> $HOME/.bashrc
+	export PATH=$HOME/.cargo/bin/:$PATH
+	echo 'export PATH=$HOME/.cargo/bin/:$PATH' >> $HOME/.bashrc
 	source $HOME/.bashrc
 	echo "部署完成..."
 	
@@ -29,7 +29,7 @@ function install_node() {
 function create_account(){
 	echo "请保存好以下密钥："
 	source $HOME/.bashrc
-	snarkos account new
+	$HOME/.cargo/bin/snarkos account new
 }
 
 function start_prover(){
