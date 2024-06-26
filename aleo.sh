@@ -71,6 +71,20 @@ function view_logs(){
 	fi
 }
 
+# 停止客户端
+function stop_client(){
+	read -p "客户端名称: " client_name
+	screen -S aleo_$client_name -X quit
+	echo "客户端已停止..."
+}
+
+# 停止证明者
+function stop_prover(){
+	read -p "客户端名称: " prover_name
+	screen -S aleo_$prover_name -X quit
+	echo "证明者已停止..."
+}
+
 # 卸载节点
 function uninstall_node(){
     echo "你确定要卸载Aleo节点程序吗？这将会删除所有相关的数据。[Y/N]"
@@ -99,8 +113,10 @@ function main_menu() {
 	    echo "1. 部署节点 install_node"
 	    echo "2. 启动客户端 start_client"
 	    echo "3. 创建账号 create_account"
-	    echo "4. 启动证明者节点 start_prover"
+	    echo "4. 启动证明者 start_prover"
 	    echo "5. 查看日志 view_logs"
+	    echo "6. 停止客户端 stop_client"
+	    echo "7. 停止证明者 stop_prover"
 	    echo "1618. 卸载节点 uninstall_node"
 	    echo "0. 退出脚本 exit"
 	    read -p "请输入选项: " OPTION
@@ -111,6 +127,8 @@ function main_menu() {
 	    3) create_account ;;
 	    4) start_prover ;;
 	    5) view_logs ;;
+	    6) stop_client ;;
+	    7) stop_prover ;;
 	    1618) uninstall_node ;;
 	    0) echo "退出脚本。"; exit 0 ;;
 	    *) echo "无效选项，请重新输入。"; sleep 3 ;;
